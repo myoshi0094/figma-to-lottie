@@ -10,12 +10,12 @@ Figma プラグインと Next.js Web アプリの2つのコンポーネントで
 
 ## 技術スタック
 
-| カテゴリ | 技術 |
-|---|---|
-| フロントエンド | Next.js 16, React 19, Tailwind CSS 4 |
-| アニメーション | @dotlottie/dotlottie-js, @lottiefiles/dotlottie-react |
-| ストレージ | AWS S3 |
-| Figma プラグイン | TypeScript, esbuild |
+| カテゴリ         | 技術                                                  |
+| ---------------- | ----------------------------------------------------- |
+| フロントエンド   | Next.js 16, React 19, Tailwind CSS 4                  |
+| アニメーション   | @dotlottie/dotlottie-js, @lottiefiles/dotlottie-react |
+| ストレージ       | AWS S3                                                |
+| Figma プラグイン | TypeScript, esbuild                                   |
 
 ## ディレクトリ構成
 
@@ -84,7 +84,3 @@ pnpm plugin:watch
 ```
 
 ビルド後、Figma の「プラグインを開発」からローカルの `figma-plugin/manifest.json` を読み込んでください。
-
-## ライセンス
-
-Private
