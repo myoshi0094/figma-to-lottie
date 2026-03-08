@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["es2017", "dom"],
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "typeRoots": ["../node_modules/@figma/plugin-typings", "../node_modules/@types"],
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}

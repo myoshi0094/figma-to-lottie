@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# figma-to-lottie
 
-## Getting Started
+Figmaのデザインを Lottie アニメーション（.lottie / .json）に変換するツールです。
+Figma プラグインと Next.js Web アプリの2つのコンポーネントで構成されています。
 
-First, run the development server:
+## 概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Figma プラグイン** — Figmaのデザインデータを取得し、Web アプリへ送信します
+- **Web アプリ (Next.js)** — 受け取ったデータを Lottie 形式に変換し、プレビュー・ダウンロードができます
+
+## 技術スタック
+
+| カテゴリ | 技術 |
+|---|---|
+| フロントエンド | Next.js 16, React 19, Tailwind CSS 4 |
+| アニメーション | @dotlottie/dotlottie-js, @lottiefiles/dotlottie-react |
+| ストレージ | AWS S3 |
+| Figma プラグイン | TypeScript, esbuild |
+
+## ディレクトリ構成
+
+```
+figma-to-lottie/
+├── app/                  # Next.js App Router
+│   ├── api/              # API Routes
+│   ├── editor/           # エディター画面
+│   ├── export/           # エクスポート画面
+│   └── preview/          # プレビュー画面
+├── components/           # 共通コンポーネント
+├── figma-plugin/         # Figma プラグイン
+│   ├── src/              # プラグインソースコード
+│   └── manifest.json     # プラグインマニフェスト
+├── lib/                  # ユーティリティ・ビジネスロジック
+│   ├── figma/            # Figma データ処理
+│   ├── lottie/           # Lottie 変換ロジック
+│   └── storage/          # S3 ストレージ操作
+└── types/                # 共通型定義
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## セットアップ
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 必要環境
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 20+
+- pnpm
 
-## Learn More
+### インストール
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 環境変数
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`.env.local` を作成し、以下を設定してください：
 
-## Deploy on Vercel
+```env
+AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET_NAME=
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 開発サーバー起動
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
+
+[http://localhost:3000](http://localhost:3000) で確認できます。
+
+## Figma プラグイン
+
+### ビルド
+
+```bash
+pnpm plugin:build
+```
+
+### 開発（ウォッチモード）
+
+```bash
+pnpm plugin:watch
+```
+
+ビルド後、Figma の「プラグインを開発」からローカルの `figma-plugin/manifest.json` を読み込んでください。
+
+## ライセンス
+
+Private
